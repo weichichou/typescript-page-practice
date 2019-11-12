@@ -1,5 +1,5 @@
 // import { JsonController, Get, Param, Put, Body, Post, HttpCode } from 'routing-controllers'
-import { JsonController, Get, Param, Put, Body, NotFoundError, Post, HttpCode } from 'routing-controllers'
+import { JsonController, Get, Param, Put, Body, NotFoundError, Post, HttpCode, Authorized } from 'routing-controllers'
 //import pagesById, { Page } from './data'
 import Page from './entity'
 
@@ -38,6 +38,7 @@ export default class PageController {
     return Page.merge(page, update).save()
     }
 
+    @Authorized()
     @Post('/pages')
     @HttpCode(201)
     createPage(
