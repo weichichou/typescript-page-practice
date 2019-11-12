@@ -1,4 +1,6 @@
-export interface Page {
+// To delete this file?
+
+/* export interface Page {
     id: number,
     title: string,
     content: string
@@ -29,4 +31,4 @@ const pagesById: PageDatabase = {
     }
   }
   
-  export default pagesById
+  export default pagesById */

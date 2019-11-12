@@ -1,24 +1,38 @@
-import { JsonController, Get, Param, Put, Body, Post, HttpCode } from 'routing-controllers'
-import pagesById, { Page } from './data'
+// import { JsonController, Get, Param, Put, Body, Post, HttpCode } from 'routing-controllers'
+import { JsonController, Get, Param } from 'routing-controllers'
+//import pagesById, { Page } from './data'
+import Page from './entity'
 
-type PageList = { pages: Page[] }
-// type PageList = any
+// type PageList = { pages: Page[] }
 
 @JsonController()
 export default class PageController {
 
-    @Get('/pages/:id')
+    /* @Get('/pages/:id')
     getPage(
         @Param('id') id: number
     ): Page {
         return pagesById[id]
+    } */
+
+    @Get('/pages/:id')
+    getPage(
+        @Param('id') id: number
+    ){
+        return Page.findOne(id)
     }
 
     @Get('/pages')
+    async allPages(){
+        const page = await Page.find()
+        return page
+    }
+
+    /* @Get('/pages')
     allPage(): PageList {
         return {pages: Object.values(pagesById)}
     }
-    
+
     @Put('/pages/:id')
     updatePage(
         @Param('id') id: number,
@@ -35,6 +49,6 @@ export default class PageController {
     ): Page {
         console.log(`Incoming POST body param:`, body)
         return body
-}
+    } */
 
 }
